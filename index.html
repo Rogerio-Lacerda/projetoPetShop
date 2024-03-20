@@ -1,25 +1,79 @@
-<html>
-    <head>
-        <title></title>
-        <link rel="stylesheet" type="text/css" href="./css/index.css" media="screen" />
-    </head>
-    <body>
-        <div class="container">
-            <header>
-                <a href="">Logo</a>
+ <!DOCTYPE html>
+ <html lang="pt-br">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Projeto Final</title>
+ </head>
+ <body>
+    <div class="fundo_principal">
+    </div>
+        <!-- HEADER -->
+        <header>
+            <nav>
+                <img src="./assets/dogs.svg" alt="Logo">
                 <ul>
-                    <li><a href="./view/cadastro.html">Cadastro</li></a> 
-                    <li>Login</li>
+                    <li><a href="view/login.html">Login</a></li>
+                    <li><a href="view/cadastro.html">Cadastro</a></li>
                 </ul>
-            </header>
-            <main></main>
-            <aside>
-                <div style="background-color: aqua;">A</div>
-                <div style="background-color: bisque;">B</div>
-                <div style="background-color: blueviolet;">C</div>
-                <div style="background-color: coral;">D</div>
-            </aside>
-            <footer></footer>
-        </div>        
-    </body>
-</html>
+            </nav>
+        </header>
+        <!-- MAIN -->
+        <main>
+            <div class="conteudo">
+                <div class="texto_inicial">
+                    <p>Oferecemos uma variedade de serviços e produtos de alta qualidade, desde cuidados de saúde até guloseimas saborosas. Nossa equipe dedicada trabalha para garantir que cada visita seja uma experiência alegre e memorável para você e seu animal de estimação. Explore nosso mundo de amor e carinho para os seus companheiros peludos!</p>
+                    <a href="view/login.html"><button class="btn_login" >Começar agora!</button></a>
+                </div>
+                <div class="imagem_incial">
+                    <img src="./assets/index/foto_fundo_index.avif" alt="" width="90%" 
+                    style="border-radius: 20px;
+                    position: relative;
+                    bottom: 8rem;">
+                </div>
+            </div>
+            <div class="categorias">
+                <div>
+                    <div class="image categ_cat"></div>
+                    <p class="categ_title">Gatos</p>
+                </div>
+                <div>
+                    <div class="image categ_dog"></div>
+                    <p class="categ_title">Cachorros</p>
+                </div>
+                <div>
+                    <div class="image categ_fish"></div>
+                    <p class="categ_title">Outros Pets</p>
+                </div>
+                <div>
+                    <div class="image categ_diversos"></div>
+                    <p class="categ_title">Produtos & Acessórios</p>
+                </div>
+            </div>
+        </main>
+        <!-- FOOTER -->
+        <footer>
+            <div class="redes">
+                <div>
+                    <i class="bi bi-instagram"></i>
+                    <p>impactaoficial_</p>
+                </div>
+                <div>
+                    <i class="bi bi-facebook"></i>
+                    <p>Faculdade Impacta</p>
+                </div>
+                <div>
+                    <i class="bi bi-envelope-at"></i>
+                    <p>desenvolvimento_web@gmail.com</p>
+                </div>
+                <div>
+                    <i class="bi bi-question-square"></i>
+                    <p>FAQ</p>
+                </div>
+            </div>
+            <center><p>2024 © Todos os direitos reservados</p></center>
+        </footer>
+ </body>
+ </html>

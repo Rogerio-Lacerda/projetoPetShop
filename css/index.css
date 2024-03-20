@@ -1,0 +1,153 @@
+*{
+
+    font-family: sans-serif;
+}
+body{
+    margin: 0;
+    font-size: 15px;
+}
+/* HEADER */
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    width: 90vw;
+}
+.nav img {
+    width: 32px;
+    height: 32px;
+  }
+nav a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 25px;
+}
+nav li{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    font-size: 10px;
+    color: #fff;
+}
+nav li a{
+    font-size: 16px;
+}
+body .fundo_principal{
+    width: 0;
+    height: 0;
+    border-left: 99vw solid #973af3;
+    border-bottom: 55rem solid transparent;
+
+}
+
+/* MAIN */
+.conteudo{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 20rem;
+}
+.conteudo .texto_inicial{
+    width: 50rem;
+    padding-left: 50px;
+    padding-right: 20rem;
+
+}
+img{
+    max-width: 100%;
+    display: block;
+}
+.conteudo .imagem_inicial{
+    width: 100%;
+    display: block;
+    
+}
+.conteudo p{
+    color: #fff;
+}
+
+.conteudo .btn_login{
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    background: #913af3;
+    border: 2px solid #fff;
+    font-weight: 550;
+    border-radius: 5px;
+    transition: 0.3s;
+    color: #fff;
+}
+.btn_login:hover{
+    background: #fff;
+    color: #913af3;
+    border: 2px solid #913af3;
+    color: #913af3;
+}
+
+.categorias{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    bottom: 5rem;
+}
+.categorias  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.image{
+    width: 8rem;
+    height: 8rem;
+    border-radius: 100%;
+    background-color: #fff;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid #913af3;
+    transition: transform 0.3s ease;
+}
+
+.image:hover{
+    transform: scale(1.1);
+}
+.categ_cat{
+    background-image: url('../assets/index/categ_cat.jpeg') ;
+}
+.categ_dog{
+    background-image: url('../assets/index/categ_dog.jpeg') ;
+}
+.categ_fish{
+    background-image: url('../assets/index/categ_outros.png') ;
+}
+.categ_diversos{
+    background-image: url('../assets/index/categ_products.webp') ;
+}
+
+/* FOOTER */
+
+footer{
+    background-color: #bbbbbb57;
+    font-size: 10px;
+    padding: 30px;
+}
+.redes{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+.redes div{
+    display: flex;
+}
+.redes i{
+    font-size: 30px;
+    color: #913af3;
+}
+.redes p{
+
+    color: #000;
+    padding-left: 10px;
+}
