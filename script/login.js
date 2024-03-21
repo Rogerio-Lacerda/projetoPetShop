@@ -51,6 +51,7 @@ async function fetchLogin(url, email, senha) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Cookie: 'gowash_session=0hGqRHf0q38ETNgEcJGce30LcPtuPKo48uKtb7Oj',
       },
       body: JSON.stringify(dados),
     });
@@ -75,11 +76,16 @@ function handleSubmit(event) {
     const verificarEmail = email.value.split(' ').some((item) => item === '');
     const verificaSenha = senha.value.split(' ').some((item) => item === '');
 
+    const errorSpan = document.querySelector('.error');
     if (verificarEmail) {
-      console.log('Preecha o email corretamente!');
+      errorSpan.innerText = 'Preecha o email sem espaço!';
+      errorSpan.classList.add('active');
     } else if (verificaSenha) {
-      console.log('Preecha a senha corretamente!');
+      errorSpan.innerText = 'Preecha a senha sem espaço!';
+      errorSpan.classList.add('active');
     } else {
+      errorSpan.innerText = '';
+      errorSpan.classList.remove('active');
       fetchLogin(url, email.value, senha.value);
     }
   }
