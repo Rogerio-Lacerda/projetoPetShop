@@ -64,3 +64,26 @@ header {
   border-radius: 4px;
   width: 100%;
 }
+
+.nav a:hover::after {
+  content: '';
+  display: block;
+  background: #fff;
+  height: 4px;
+  background: #fff;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.content img {
+  object-fit: cover;
+  object-position: center;
+  height: 55rem;
+}
