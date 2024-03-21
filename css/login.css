@@ -141,7 +141,7 @@ header {
   font-size: 1.2rem;
 }
 
-.entrar {
+.btnLogin {
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
   background: #fff;
@@ -153,9 +153,16 @@ header {
   max-width: max-content;
 }
 
-.entrar:hover {
+.btnLogin:hover {
   background: #913af3;
   color: #fff;
+}
+
+.btnLogin.loading {
+  background: #913af3;
+  color: #fff;
+  opacity: 0.6;
+  cursor: initial;
 }
 
 footer {
@@ -174,6 +181,18 @@ footer img {
 
 footer p {
   color: #fff;
+}
+
+.error {
+  font-size: 1.1rem;
+  color: red;
+  display: block;
+  font-family: inherit;
+  display: none;
+}
+
+.error.active {
+  display: block;
 }
 
 @media (max-width: 650px) {

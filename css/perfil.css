@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    background-color: black;
+    padding: 0;
+    box-sizing: border-box;
+    display: grid;
+ grid-template-columns: 1fr 1fr;  
+ grid-template-rows: 10vh 70vh 20vh;
+ grid-gap: 10px;
+}
+header{
+    background-color: burlywood;
+    grid-column: 1/3;
+}
+
+aside{
+    background-color: whitesmoke;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+}
+
+main{
+    background-color: #913af3;
+    padding-left: 15px;
+    padding-right: 20px;
+    border-radius: 10px;
+}
+.dados_user{
+    display:flex;
+    justify-content:space-between;
+    align-items: start;
+    border: 2px solid #fff;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+}
+.endereco{
+    border: 2px solid #913af3;
+    border-radius: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
