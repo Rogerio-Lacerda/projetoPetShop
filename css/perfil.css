@@ -1,23 +1,55 @@
+
+
 body{
     margin: 0;
-    background-color: black;
+    background-color: #fff;
     padding: 0;
     box-sizing: border-box;
     display: grid;
- grid-template-columns: 1fr 1fr;  
- grid-template-rows: 10vh 70vh 20vh;
- grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;  
+    grid-template-rows: 10vh 70vh 20vh;
+    grid-gap: 10px;
+    font-family: sans-serif;
+    text-decoration: none;
 }
+
 header{
-    background-color: burlywood;
+    background-color: #913af3;
     grid-column: 1/3;
+    width: 100%;
+}
+
+.navegacao{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.navegacao ul{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.navegacao li{
+    list-style: none;
+}
+
+.navegacao a{
+    text-decoration: none;
+    color: #fff;
 }
 
 aside{
-    background-color: whitesmoke;
+    background-color: #e3e3e3;
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 10px;
+    display: grid;
+    align-content: start;
+    align-items: start;
+    margin: 1rem;
 }
 
 main{
@@ -25,7 +57,12 @@ main{
     padding-left: 15px;
     padding-right: 20px;
     border-radius: 10px;
+    margin: 1rem;
+    display: grid;
+    align-items: start;
 }
+
+
 .dados_user{
     display:flex;
     justify-content:space-between;
@@ -35,9 +72,45 @@ main{
     padding-right: 15px;
     border-radius: 10px;
 }
+
 .endereco{
     border: 2px solid #913af3;
     border-radius: 10px;
     padding-left: 15px;
     padding-right: 15px;
+    display: grid;
+    align-items: start;
+    align-content: start;
+}
+
+.endereco p{
+    margin-top: -16px;
+}
+
+footer{
+    background-color: #913af3;
+    font-size: 10px;
+    padding: 30px;
+    grid-column: 1 /-1;
+}
+
+.redes{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.redes div{
+    display: flex;
+}
+
+.redes i{
+    font-size: 30px;
+    color: #fff;
+}
+
+.redes p{
+
+    color: #fff;
+    padding-left: 10px;
 }
