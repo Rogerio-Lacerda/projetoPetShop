@@ -1,10 +1,86 @@
 const url = 'https://api-go-wash-efc9c9582687.herokuapp.com/api/user';
 
-const btnCadastrar = document.querySelector('.btnCadastrar');
-btnCadastrar.addEventListener('click', cadastroUsuario);
+const form = document.querySelector('.form');
 
-async function cadastroUsuario(e) {
-  e.preventDefault();
+function manipularButton(active) {
+  const btnCadastrar = document.querySelector('.btnCadastrar');
+  if (active) {
+    btnCadastrar.classList.add('loading');
+    btnCadastrar.innerText = 'Entrando...';
+    btnCadastrar.setAttribute('disabled', '');
+  } else {
+    btnCadastrar.classList.remove('loading');
+    btnCadastrar.innerText = 'Entrar';
+    btnCadastrar.removeAttribute('disabled', '');
+  }
+}
+
+function mostrarInformacoes(data, error, loading) {
+  const errorSpan = document.querySelector('.error');
+  if (loading) {
+    manipularButton(true);
+    errorSpan.innerText = '';
+    errorSpan.classList.remove('active');
+  } else if (error) {
+    manipularButton(false);
+    errorSpan.innerText = data;
+    errorSpan.classList.add('active');
+  } else if (data) {
+    manipularButton(false);
+
+    errorSpan.innerText = '';
+    errorSpan.classList.remove('active');
+    console.log(data);
+  }
+}
+
+async function enviarCadastro(dadosValidados){
+  let resposta;
+  let loading = false;
+  let error = false;
+  let data = null;
+
+  try {
+    loading = true;
+    error = false;
+    mostrarInformacoes(data, error, loading);
+    resposta = await fetch(url, {
+        method: 'POST',
+        body: dadosValidados,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    data = await resposta.json();
+    if (!resposta.ok) {
+      if(data.data.errors == "cpf_cnpj invalid"){
+        data = "CPF/CNPJ inválido!"
+      }
+      throw new Error(true);
+    }
+  }
+  catch (e) {
+    error = e;
+  } finally {
+    loading = false;
+    mostrarInformacoes(data, error, loading);
+  }
+}
+
+function convertIdade(dataNasc){
+var dataNascimento = new Date(dataNasc);
+var dataAtual = new Date();
+var diferenca = dataAtual - dataNascimento;
+var diferencaEmAnos = diferenca / (1000 * 60 * 60 * 24 * 365.25);
+
+return diferencaEmAnos;
+}
+
+async function validarDados(e) {
+  if (e instanceof Event) {
+    e.preventDefault();
+  }
+
   var name = document.getElementById('name').value;
   var dataNasc = document.getElementById('dataNasc').value;
   var cpfCnpj = document.getElementById('cpf_cnpj').value;
@@ -13,43 +89,44 @@ async function cadastroUsuario(e) {
   var confSenha = document.getElementById('confSenha').value;
   var termo = document.getElementById('user_type').value;
 
-  if (senha == confSenha) {
-    let resposta;
-    let data;
-    let error;
-    try {
-      resposta = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          user_type_id: 1,
-          password: senha,
-          cpf_cnpj: cpfCnpj,
-          terms: termo,
-          birthday: dataNasc,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      data = await resposta.json();
+  
+  let idade = convertIdade(dataNasc);
+  const errorSpan = document.querySelector('.error');
 
-      // if (data.data.statusCode != 200) {
-      //   alert(data.data.errors?.cpf_cnpj[0]);
-      //   return;
-      // }
-      // alert('Cadastro feito com sucesso');
-      if (!resposta.ok) throw new Error(e);
-    } catch (e) {
-      error = e;
-    } finally {
-      console.log(resposta);
-      console.log(data);
-      console.log(error);
-      // window.location.href = 'login.html';
+  if(idade < 18){
+    errorSpan.innerText = 'É necessário ser maior de idade!';
+    errorSpan.classList.add('active');
+  }
+  else if(senha.length < 6 && confSenha.length < 6){
+    errorSpan.innerText = 'Senha precisa no mínimo de 6 caracteres!';
+    errorSpan.classList.add('active');
+  }
+  else if(senha != confSenha){
+    errorSpan.innerText = 'As senhas não conferem!';
+    errorSpan.classList.add('active');
+  }
+  else if(termo != 1){
+    errorSpan.innerText = 'É necessário aceitar os termos!';
+    errorSpan.classList.add('active');
+  }
+  else{
+    errorSpan.innerText = '';
+    errorSpan.classList.remove('active');
+
+    const dados = {
+      name: name,
+      email: email,
+      user_type_id: 1,
+      password: senha,
+      cpf_cnpj: cpfCnpj,
+      terms: termo,
+      birthday: dataNasc
     }
-  } else {
-    alert('Senhas não conferem');
+  
+    await enviarCadastro(JSON.stringify(dados));
+  
   }
 }
+
+
+form.addEventListener('submit', validarDados);

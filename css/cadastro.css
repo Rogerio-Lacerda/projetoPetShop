@@ -93,6 +93,8 @@ header {
   display: grid;
   gap: 1rem;
   padding: 8rem 2rem 1rem 2rem;
+  position: relative;
+  bottom:4.5rem;
 }
 
 .form h1 {
@@ -118,7 +120,7 @@ header {
   max-width: 400px;
 }
 
-.form input {
+.form input, select {
   padding: 0.8rem;
   border-radius: 4px;
   border: 1px solid transparent;
@@ -126,6 +128,8 @@ header {
   background: #ebecf0;
   transition: 0.3s;
 }
+
+
 
 .form input:focus {
   outline: none;
@@ -157,4 +161,16 @@ header {
 .btnCadastrar:hover {
   background: #913af3;
   color: #fff;
+}
+
+.error {
+  font-size: 0.9rem;
+  color: red;
+  display: block;
+  font-family: inherit;
+  display: none;
+}
+
+.error.active {
+  display: block;
 }
