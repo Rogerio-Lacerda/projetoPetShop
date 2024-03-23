@@ -1,4 +1,4 @@
-@import url("footer.css");
+@import url('footer.css');
 * {
   margin: 0;
   padding: 0;
@@ -167,7 +167,7 @@ header {
 }
 
 .error {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   color: red;
   display: block;
   font-family: inherit;

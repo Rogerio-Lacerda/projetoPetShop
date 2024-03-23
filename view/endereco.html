@@ -4,13 +4,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastrar Endereço | Pet Shop</title>
-  <link rel="stylesheet" href="../css/cadastro.css">
+  <title>Endereço | Pet Shop</title>
+  <link rel="stylesheet" href="../css/endereco.css">
+  <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+
 </head>
 
 <body>
-  <h1>cadastro</h1>
-  <script src="../script/cadastro.js"></script>
+  <header>
+    <nav class="nav">
+      <img src="../../assets/dogs.svg" alt="Logo">
+      <ul>
+        <li>
+          <a href="./home.html">Home</a>
+        </li>
+        <li>
+          <a href="./perfil.html">Perfil</a>
+        </li>
+        <li>
+          <a href="./endereco.html">Cadastro de endereço</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content">
+
+    <form class="formCadastrar">
+      <h2>Cadastrar Endereço</h2>
+      <div>
+        <label for="titulo">Titulo</label>
+        <input type="text" name="titulo" id="titulo" required>
+      </div>
+      <div>
+        <label for="cep">CEP</label>
+        <input type="number" name="cep" id="cep" required placeholder="Digite somente números">
+      </div>
+      <div>
+        <label for="endereco">Endereco</label>
+        <input type="text" name="endereco" id="endereco" required>
+      </div>
+      <div>
+        <label for="numero">Número</label>
+        <input type="number" name="numero" id="numero" required>
+      </div>
+      <div>
+        <label for="complemento">Complemento</label>
+        <input type="text" name="complemento" id="complemento" required>
+      </div>
+      <div>
+        <button class="btnCadastrar">Cadastrar</button>
+      </div>
+      <span class="error">Cadastre um endereço válido.</span>
+      <span class="cadastrado">Endereço cadastrado</span>
+
+    </form>
+  </main>
+
+
+  <script src="../script/endereco.js"></script>
 </body>
 
 </html>
