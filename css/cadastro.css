@@ -1,3 +1,4 @@
+@import url("footer.css");
 * {
   margin: 0;
   padding: 0;
@@ -29,7 +30,6 @@ header {
   width: 100%;
   padding: 1rem;
   color: #fff;
-  height: 5rem;
 }
 
 .nav {
@@ -156,18 +156,5 @@ header {
 
 .btnCadastrar:hover {
   background: #913af3;
-  color: #fff;
-}
-
-footer {
-  display: grid;
-  padding: 2rem 1rem;
-  background: #913af3;
-  justify-items: center;
-  gap: 1rem;
-  text-align: center;
-}
-
-footer p {
   color: #fff;
 }

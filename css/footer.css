@@ -1,0 +1,26 @@
+/* FOOTER */
+
+footer{
+    background-color: #bbbbbb57;
+    font-size: 10px;
+    padding: 30px;
+}
+.redes{
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    padding: 5px;
+}
+.redes div{
+    display: flex;
+    align-items: center;
+}
+.redes i{
+    font-size: 30px;
+    color: #913af3;
+}
+.redes p{
+
+    color: #000;
+    padding-left: 10px;
+}
