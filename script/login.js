@@ -26,10 +26,11 @@ function mostrarInformacoes(json, error, loading) {
     errorSpan.classList.add('active');
   } else if (json) {
     manipularButton(false);
-
+    window.localStorage.setItem("userData",JSON.stringify(json));
     errorSpan.innerText = '';
     errorSpan.classList.remove('active');
     console.log(json);
+    window.location.href = 'perfil.html';
   }
 }
 
