@@ -30,11 +30,12 @@ function mostrarInformacoes(data, error, loading) {
 
     errorSpan.innerText = '';
     errorSpan.classList.remove('active');
-    console.log(data);
+    alert('Cadastro efetuado com sucesso!');
+    window.location.href = 'login.html';
   }
 }
 
-async function enviarCadastro(dadosValidados){
+async function enviarCadastro(dadosValidados) {
   let resposta;
   let loading = false;
   let error = false;
@@ -45,21 +46,31 @@ async function enviarCadastro(dadosValidados){
     error = false;
     mostrarInformacoes(data, error, loading);
     resposta = await fetch(url, {
-        method: 'POST',
-        body: dadosValidados,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      method: 'POST',
+      body: dadosValidados,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     data = await resposta.json();
+
     if (!resposta.ok) {
-      if(data.data.errors == "cpf_cnpj invalid"){
-        data = "CPF/CNPJ inválido!"
+      if (data.data.errors == 'cpf_cnpj invalid') {
+        data = 'CPF/CNPJ inválido!';
+      }
+      if (data.data.statusCode == 422) {
+        if (data.data.errors.email == 'The email has already been taken.') {
+          data = 'Email já cadastrado';
+        }
+        if (
+          data.data.errors.cpf_cnpj == 'The cpf cnpj has already been taken.'
+        ) {
+          data = 'CPF/CNPJ já cadastrado';
+        }
       }
       throw new Error(true);
     }
-  }
-  catch (e) {
+  } catch (e) {
     error = e;
   } finally {
     loading = false;
@@ -67,13 +78,13 @@ async function enviarCadastro(dadosValidados){
   }
 }
 
-function convertIdade(dataNasc){
-var dataNascimento = new Date(dataNasc);
-var dataAtual = new Date();
-var diferenca = dataAtual - dataNascimento;
-var diferencaEmAnos = diferenca / (1000 * 60 * 60 * 24 * 365.25);
+function convertIdade(dataNasc) {
+  var dataNascimento = new Date(dataNasc);
+  var dataAtual = new Date();
+  var diferenca = dataAtual - dataNascimento;
+  var diferencaEmAnos = diferenca / (1000 * 60 * 60 * 24 * 365.25);
 
-return diferencaEmAnos;
+  return diferencaEmAnos;
 }
 
 async function validarDados(e) {
@@ -89,27 +100,22 @@ async function validarDados(e) {
   var confSenha = document.getElementById('confSenha').value;
   var termo = document.getElementById('user_type').value;
 
-  
   let idade = convertIdade(dataNasc);
   const errorSpan = document.querySelector('.error');
 
-  if(idade < 18){
+  if (idade < 18) {
     errorSpan.innerText = 'É necessário ser maior de idade!';
     errorSpan.classList.add('active');
-  }
-  else if(senha.length < 6 && confSenha.length < 6){
+  } else if (senha.length < 6 && confSenha.length < 6) {
     errorSpan.innerText = 'Senha precisa no mínimo de 6 caracteres!';
     errorSpan.classList.add('active');
-  }
-  else if(senha != confSenha){
+  } else if (senha != confSenha) {
     errorSpan.innerText = 'As senhas não conferem!';
     errorSpan.classList.add('active');
-  }
-  else if(termo != 1){
+  } else if (termo != 1) {
     errorSpan.innerText = 'É necessário aceitar os termos!';
     errorSpan.classList.add('active');
-  }
-  else{
+  } else {
     errorSpan.innerText = '';
     errorSpan.classList.remove('active');
 
@@ -120,13 +126,11 @@ async function validarDados(e) {
       password: senha,
       cpf_cnpj: cpfCnpj,
       terms: termo,
-      birthday: dataNasc
-    }
-  
+      birthday: dataNasc,
+    };
+
     await enviarCadastro(JSON.stringify(dados));
-  
   }
 }
-
 
 form.addEventListener('submit', validarDados);

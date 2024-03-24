@@ -15,21 +15,14 @@
     <nav class="nav">
       <img src="../../assets/dogs.svg" alt="Logo">
       <ul>
-        <li>
-          <a href="./home.html">Home</a>
-        </li>
-        <li>
+        <li class="linkPerfil">
           <a href="./perfil.html">Perfil</a>
-        </li>
-        <li>
-          <a href="./endereco.html">Cadastro de endereço</a>
         </li>
       </ul>
     </nav>
   </header>
 
   <main class="content">
-
     <form class="formCadastrar">
       <h2>Cadastrar Endereço</h2>
       <div>
@@ -57,7 +50,34 @@
       </div>
       <span class="error">Cadastre um endereço válido.</span>
       <span class="cadastrado">Endereço cadastrado</span>
-
+    </form>
+    <form class="formAlterar">
+      <h2 class="tituloAlterar">Alterar Endereço</h2>
+      <div>
+        <label for="titulo_alterar">Titulo</label>
+        <input type="text" name="titulo_alterar" id="titulo_alterar" required>
+      </div>
+      <div>
+        <label for="cep_alterar">CEP</label>
+        <input type="number" name="cep_alterar" id="cep_alterar" required placeholder="Digite somente números">
+      </div>
+      <div>
+        <label for="endereco_alterar">Endereco</label>
+        <input type="text" name="endereco_alterar" id="endereco_alterar" required>
+      </div>
+      <div>
+        <label for="numero_alterar">Número</label>
+        <input type="number" name="numero_alterar" id="numero_alterar" required>
+      </div>
+      <div>
+        <label for="complemento_alterar">Complemento</label>
+        <input type="text" name="complemento_alterar" id="complemento_alterar" required>
+      </div>
+      <div>
+        <button class="btnAlterar">Alterar</button>
+      </div>
+      <span class="errorAlterar">Cadastre um endereço válido.</span>
+      <span class="cadastradoAlterar">Endereço Alterado!</span>
     </form>
   </main>
 

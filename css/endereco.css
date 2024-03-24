@@ -79,9 +79,11 @@ header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 2rem;
+  gap: 2rem;
 }
 
-.formCadastrar {
+.formCadastrar,
+.formAlterar {
   display: grid;
   padding: 2rem;
   gap: 1rem;
@@ -89,12 +91,14 @@ header {
   border-radius: 4px;
 }
 
-.formCadastrar h2 {
+.formCadastrar h2,
+.formAlterar h2 {
   font-size: 2rem;
   justify-self: start;
 }
 
-.formCadastrar h2::after {
+.formCadastrar h2::after,
+.formAlterar h2::after {
   content: '';
   height: 4px;
   width: 1rem;
@@ -103,14 +107,16 @@ header {
   display: block;
 }
 
-.formCadastrar div {
+.formCadastrar div,
+.formAlterar div {
   display: grid;
   align-items: start;
   gap: 0.5rem;
   max-width: 550px;
 }
 
-.formCadastrar input {
+.formCadastrar input,
+.formAlterar input {
   padding: 0.8rem;
   border-radius: 4px;
   border: 1px solid transparent;
@@ -119,22 +125,27 @@ header {
   transition: 0.3s;
 }
 
-.formCadastrar input:focus {
+.formCadastrar input:focus,
+.formAlterar input:focus {
   outline: none;
 }
 
 .formCadastrar input:hover,
-.formCadastrar input:focus {
+.formCadastrar input:focus,
+.formAlterar input:hover,
+.formAlterar input:focus {
   background: #fff;
   border-color: #913af3;
   box-shadow: 0 0 4px #913af3;
 }
 
-.formCadastrar label {
+.formCadastrar label,
+.formAlterar label {
   font-size: 1.2rem;
 }
 
-.btnCadastrar {
+.btnCadastrar,
+.btnAlterar {
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
   background: #fff;
@@ -147,28 +158,33 @@ header {
   justify-self: end;
 }
 
-.btnCadastrar:hover {
+.btnCadastrar:hover,
+.btnAlterar:hover {
   background: #913af3;
   color: #fff;
 }
 
-.btnCadastrar.loading {
+.btnCadastrar.loading,
+.btnAlterar.loading {
   background: #913af3;
   color: #fff;
 }
 
-.error {
+.error,
+.errorAlterar {
   color: red;
   justify-self: center;
   font-weight: 600;
   display: none;
 }
 
-.error.ativo {
+.error.ativo,
+.errorAlterar.ativo {
   display: block;
 }
 
-.cadastrado {
+.cadastrado,
+.cadastradoAlterar {
   color: green;
   font-weight: 600;
   justify-self: center;
@@ -176,6 +192,19 @@ header {
   display: none;
 }
 
-.cadastrado.ativo {
+.cadastrado.ativo,
+.cadastradoAlterar.ativo {
   display: block;
+}
+
+.tituloAlterar {
+  display: grid;
+}
+
+.formAlterar {
+  display: none;
+}
+
+.formAlterar.ativo {
+  display: grid;
 }

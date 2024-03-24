@@ -1,21 +1,22 @@
 const userData = localStorage.getItem('userData')
-? JSON.parse(localStorage.getItem('userData'))
-: null;
+  ? JSON.parse(localStorage.getItem('userData'))
+  : null;
 
 if (userData) {
-  
-  const urlGetEndereco = "https://api-go-wash-efc9c9582687.herokuapp.com/api/auth/address";
-  const urlDeleteEndereco = "https://api-go-wash-efc9c9582687.herokuapp.com/api/auth/address/";
+  const urlGetEndereco =
+    'https://api-go-wash-efc9c9582687.herokuapp.com/api/auth/address';
+  const urlDeleteEndereco =
+    'https://api-go-wash-efc9c9582687.herokuapp.com/api/auth/address/';
 
   const retornoEndereco = [];
-  window.addEventListener('load', async function() {
+  window.addEventListener('load', async function () {
     let token = userData.access_token;
     let dadosUser = userData.user;
-      await getEndereco(token);
-      mostrarInfoUser(dadosUser);
-    });
+    await getEndereco(token);
+    mostrarInfoUser(dadosUser);
+  });
 
-  async function getEndereco(token){
+  async function getEndereco(token) {
     let resposta;
     let data = null;
     try {
@@ -23,75 +24,84 @@ if (userData) {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: "Bearer " +  token,
+          Authorization: 'Bearer ' + token,
         },
       });
       data = await resposta.json();
       if (!resposta.ok) {
-        if(data.data.statusCode != 200){
+        if (data.data.statusCode != 200) {
           console.log(data);
         }
         throw new Error(true);
       }
-      for (const i in data.data){
-        retornoEndereco.push(data.data[i])
+      for (const i in data.data) {
+        retornoEndereco.push(data.data[i]);
       }
-    }
-    catch (e) {
+    } catch (e) {
       error = e;
     } finally {
       loading = false;
-      //console.log(retornoEndereco);
       mostrarInfoEndereco(retornoEndereco, token);
     }
   }
 
-  function deletarEndereco(botao, token){ 
-    botao.addEventListener('click', async function(event) {
-      let resposta;
-      let data = null;
-
-        event.preventDefault();
-        const id = botao.value;
-        console.log('ID do botão clicado:', id);
-        const confirmacao = window.confirm('Tem certeza que deseja deletar este endereço?');
-        if (confirmacao) {
-          try {
-            let url = urlDeleteEndereco+id;
-            resposta = await fetch(url,{
-              method: 'DELETE',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: "Bearer " +  token,
-              },
-            });
-            data = await resposta.json();
-            if (!resposta.ok) {
-              if(data.data.statusCode != 200){
-                console.log(data);
-              }
-              throw new Error(true);
-            }
-          }
-          catch (e) {
-            console.log(e);
-          } finally {
-            //console.log(data);
-            window.alert('Endereço deletado!');
-            window.location.reload()
-          }
-        }
+  function alterarEndereco(botao) {
+    botao.addEventListener('click', function (event) {
+      event.preventDefault();
+      const id = botao.value;
+      const titulo = document.querySelector(`.titulo${id}`).value;
+      const dadosEndereco = { id, titulo };
+      window.localStorage.setItem('idEndereco', JSON.stringify(dadosEndereco));
+      window.location.href = 'endereco.html';
     });
   }
 
-  function mostrarInfoEndereco(retorno, token){
-      const content = document.querySelector(".endereco");
-      retorno.map((item)=>{
-      const form = document.createElement("form");
-      form.classList.add("form");
-      //console.log(item)
+  function deletarEndereco(botao, token) {
+    botao.addEventListener('click', async function (event) {
+      let resposta;
+      let data = null;
+
+      event.preventDefault();
+      const id = botao.value;
+      console.log('ID do botão clicado:', id);
+      const confirmacao = window.confirm(
+        'Tem certeza que deseja deletar este endereço?',
+      );
+      if (confirmacao) {
+        try {
+          let url = urlDeleteEndereco + id;
+          resposta = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + token,
+            },
+          });
+          data = await resposta.json();
+          if (!resposta.ok) {
+            if (data.data.statusCode != 200) {
+              console.log(data);
+            }
+            throw new Error(true);
+          }
+        } catch (e) {
+          console.log(e);
+        } finally {
+          //console.log(data);
+          window.alert('Endereço deletado!');
+          window.location.reload();
+        }
+      }
+    });
+  }
+
+  function mostrarInfoEndereco(retorno, token) {
+    const content = document.querySelector('.endereco');
+    retorno.map((item) => {
+      const form = document.createElement('form');
+      form.classList.add('form');
       form.innerHTML = `
-      
+
         <button value="${item.id}" id="alteraEndereco" class="idEndereco btn-alterar">
           <i class="bi bi-pencil"></i>
         </button>
@@ -99,9 +109,9 @@ if (userData) {
           <i class="bi bi-trash"></i>
         </button>
       
-      <div>
+      <div >
           <h3> Titulo </h3>
-          <input readonly value="${item.title}" name="Titulo">
+          <input readonly value="${item.title}" name="Titulo" class='titulo${item.id}'>
       </div>
   
       <div>
@@ -125,23 +135,27 @@ if (userData) {
       </div>
       <div class="ponto">.</div>`;
       content.appendChild(form);
+      const btnAlterar = form.querySelectorAll('.btn-alterar');
+      btnAlterar.forEach((item) => {
+        alterarEndereco(item);
+      });
 
       const botoesDeletar = form.querySelectorAll('.btn-deletar');
-      botoesDeletar.forEach(function(botao) {
+      botoesDeletar.forEach(function (botao) {
         deletarEndereco(botao, token);
-        });
+      });
     });
   }
 
-  function mostrarInfoUser(dadosUser){
+  function mostrarInfoUser(dadosUser) {
     let name = dadosUser.name;
     let email = dadosUser.email;
     let user_id = dadosUser.id;
     let cpf_cnpj = dadosUser.cpf_cnpj;
     let nasc = dadosUser.birthday;
-    const content = document.querySelector(".informacoes");
-    const div = document.createElement("div");
-    div.classList.add("dados_user");
+    const content = document.querySelector('.informacoes');
+    const div = document.createElement('div');
+    div.classList.add('dados_user');
     div.innerHTML = `
     <div class="informacoes_user">
       <div>
@@ -174,21 +188,19 @@ if (userData) {
     </div>`;
     content.appendChild(div);
 
-    const main = document.querySelector(".nome");
-    const p = document.createElement("p");
+    const main = document.querySelector('.nome');
+    const p = document.createElement('p');
     p.innerHTML = `<p>${name}</p>`;
     main.appendChild(p);
   }
 
-  function sairUser(){
-    window.localStorage.removeItem("userData");
+  function sairUser() {
+    window.localStorage.removeItem('userData');
   }
 
-  
-  const btnSair = document.querySelector(".btnSair");
-  btnSair.addEventListener("click", sairUser);
+  const btnSair = document.querySelector('.btnSair');
+  btnSair.addEventListener('click', sairUser);
 } else {
   window.location.href = 'login.html';
-  alert("Você precisa estar logado!");
-  //console.log(userData);
+  alert('Você precisa estar logado!');
 }

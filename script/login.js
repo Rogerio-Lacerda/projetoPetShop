@@ -1,5 +1,12 @@
 const form = document.querySelector('.form');
 const url = 'https://api-go-wash-efc9c9582687.herokuapp.com/api/login';
+const userData = localStorage.getItem('userData')
+  ? JSON.parse(localStorage.getItem('userData'))
+  : null;
+
+if (userData) {
+  window.location.href = 'perfil.html';
+}
 
 function manipularButton(active) {
   const buttonLogin = document.querySelector('.btnLogin');
@@ -26,7 +33,7 @@ function mostrarInformacoes(json, error, loading) {
     errorSpan.classList.add('active');
   } else if (json) {
     manipularButton(false);
-    window.localStorage.setItem("userData",JSON.stringify(json));
+    window.localStorage.setItem('userData', JSON.stringify(json));
     errorSpan.innerText = '';
     errorSpan.classList.remove('active');
     console.log(json);
