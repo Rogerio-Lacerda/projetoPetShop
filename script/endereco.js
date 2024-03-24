@@ -111,6 +111,7 @@ if (userData) {
   linkPerfil.addEventListener('click', () => {
     window.localStorage.removeItem('idEndereco');
   });
+
   if (idEndereco) {
     function alterarEndereco() {
       const formAlterar = document.querySelector('.formAlterar');
