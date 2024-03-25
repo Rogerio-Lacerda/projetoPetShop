@@ -110,7 +110,7 @@ aside h2::after {
   border: none;
   font-size: 1.1rem;
   position: relative;
-  left: 95%;
+  left: 90%;
 }
 .btn-deletar {
   color: red;
@@ -155,7 +155,7 @@ aside h2::after {
 .ponto {
   color: transparent;
   border-bottom: 3px solid #913af3;
-  width: 41rem;
+  width: 35rem;
 }
 .form div {
   display: flex;
@@ -166,7 +166,7 @@ aside h2::after {
   background-color: transparent;
   border: none;
   font-size: 0.9rem;
-  width: 30rem;
+  width: 25rem;
 }
 
 .form input:focus {
