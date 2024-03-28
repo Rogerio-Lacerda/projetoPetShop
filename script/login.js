@@ -74,28 +74,25 @@ async function fetchLogin(url, email, senha) {
 }
 
 function handleSubmit(event) {
-  if (event instanceof Event) {
-    event.preventDefault();
-  }
+  event.preventDefault();
+
   const email = document.getElementById('nome');
   const senha = document.getElementById('senha');
 
-  if (email instanceof HTMLInputElement && senha instanceof HTMLInputElement) {
-    const verificarEmail = email.value.split(' ').some((item) => item === '');
-    const verificaSenha = senha.value.split(' ').some((item) => item === '');
+  const verificarEmail = email.value.split(' ').some((item) => item === '');
+  const verificaSenha = senha.value.split(' ').some((item) => item === '');
 
-    const errorSpan = document.querySelector('.error');
-    if (verificarEmail) {
-      errorSpan.innerText = 'Preecha o email sem espaço!';
-      errorSpan.classList.add('active');
-    } else if (verificaSenha) {
-      errorSpan.innerText = 'Preecha a senha sem espaço!';
-      errorSpan.classList.add('active');
-    } else {
-      errorSpan.innerText = '';
-      errorSpan.classList.remove('active');
-      fetchLogin(url, email.value, senha.value);
-    }
+  const errorSpan = document.querySelector('.error');
+  if (verificarEmail) {
+    errorSpan.innerText = 'Preecha o email sem espaço!';
+    errorSpan.classList.add('active');
+  } else if (verificaSenha) {
+    errorSpan.innerText = 'Preecha a senha sem espaço!';
+    errorSpan.classList.add('active');
+  } else {
+    errorSpan.innerText = '';
+    errorSpan.classList.remove('active');
+    fetchLogin(url, email.value, senha.value);
   }
 }
 
