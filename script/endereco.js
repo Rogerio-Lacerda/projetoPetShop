@@ -3,6 +3,7 @@ const userData = localStorage.getItem('userData')
   : null;
 
 if (userData) {
+  // Cadastrar Endereço
   function cadastrarEndereco() {
     const formCadastrar = document.querySelector('.formCadastrar');
     const url =
@@ -101,6 +102,7 @@ if (userData) {
   }
   cadastrarEndereco();
 
+  // Alterar Endereço
   const idEndereco = window.localStorage.getItem('idEndereco')
     ? JSON.parse(window.localStorage.getItem('idEndereco'))
     : null;

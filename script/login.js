@@ -36,7 +36,6 @@ function mostrarInformacoes(json, error, loading) {
     window.localStorage.setItem('userData', JSON.stringify(json));
     errorSpan.innerText = '';
     errorSpan.classList.remove('active');
-    console.log(json);
     window.location.href = 'perfil.html';
   }
 }

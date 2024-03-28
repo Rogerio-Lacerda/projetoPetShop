@@ -10,11 +10,11 @@ if (!userData) {
     const btnCadastrar = document.querySelector('.btnCadastrar');
     if (active) {
       btnCadastrar.classList.add('loading');
-      btnCadastrar.innerText = 'Entrando...';
+      btnCadastrar.innerText = 'Cadastrando...';
       btnCadastrar.setAttribute('disabled', '');
     } else {
       btnCadastrar.classList.remove('loading');
-      btnCadastrar.innerText = 'Entrar';
+      btnCadastrar.innerText = 'Cadastrar';
       btnCadastrar.removeAttribute('disabled', '');
     }
   }
