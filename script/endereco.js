@@ -7,7 +7,7 @@ if (userData) {
   function cadastrarEndereco() {
     const formCadastrar = document.querySelector('.formCadastrar');
     const url =
-      'https://api-go-wash-efc9c9582687.herokuapp.com/api/auth/address';
+      'https://go-wash-api.onrender.com/api/auth/address';
 
     const token = userData['access_token'];
 
@@ -19,7 +19,7 @@ if (userData) {
         buttonCadastrar.setAttribute('disabled', '');
       } else {
         buttonCadastrar.classList.remove('loading');
-        buttonCadastrar.innerText = 'Cadatrar';
+        buttonCadastrar.innerText = 'Cadastrar';
         buttonCadastrar.removeAttribute('disabled', '');
       }
     }
@@ -117,7 +117,7 @@ if (userData) {
   if (idEndereco) {
     function alterarEndereco() {
       const formAlterar = document.querySelector('.formAlterar');
-      const url = `https://api-go-wash-efc9c9582687.herokuapp.com/api/auth/address/${idEndereco.id}`;
+      const url = `https://go-wash-api.onrender.com/api/auth/address/${idEndereco.id}`;
       const token = userData['access_token'];
       const tituloAlterar = document.querySelector('.tituloAlterar');
       formAlterar.classList.add('ativo');

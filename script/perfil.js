@@ -4,9 +4,9 @@ const userData = localStorage.getItem('userData')
 
 if (userData) {
   const urlGetEndereco =
-    'https://api-go-wash-efc9c9582687.herokuapp.com/api/auth/address';
+    'https://go-wash-api.onrender.com/api/auth/address';
   const urlDeleteEndereco =
-    'https://api-go-wash-efc9c9582687.herokuapp.com/api/auth/address/';
+    'https://go-wash-api.onrender.com/api/auth/address/';
 
   const retornoEndereco = [];
   window.addEventListener('load', async function () {

@@ -1,5 +1,5 @@
 const form = document.querySelector('.form');
-const url = 'https://api-go-wash-efc9c9582687.herokuapp.com/api/login';
+const url = 'https://go-wash-api.onrender.com/api/login';
 const userData = localStorage.getItem('userData')
   ? JSON.parse(localStorage.getItem('userData'))
   : null;
