@@ -6,8 +6,7 @@ if (userData) {
   // Cadastrar Endereço
   function cadastrarEndereco() {
     const formCadastrar = document.querySelector('.formCadastrar');
-    const url =
-      'https://go-wash-api.onrender.com/api/auth/address';
+    const url = 'https://go-wash-api.onrender.com/api/auth/address';
 
     const token = userData['access_token'];
 
@@ -43,8 +42,8 @@ if (userData) {
         enderecoCadastrado.classList.add('ativo');
         setTimeout(() => {
           enderecoCadastrado.classList.remove('ativo');
-          window.location.reload();
-        }, 3000);
+          window.location.href = 'perfil.html';
+        }, 2000);
       }
     }
 
@@ -83,13 +82,16 @@ if (userData) {
       const endereco = document.getElementById('endereco').value;
       const numero = document.getElementById('numero').value;
       const complemento = document.getElementById('complemento').value;
+      const regexCep = /^[^0-9]*$/;
 
-      if (cep && cep.length !== 8) {
+      if (cep && cep.replace(/[^0-9]/g, '').length !== 8) {
         alert('preecha o CEP com 8 números');
+      } else if (regexCep.test(cep)) {
+        alert('CEP INVÁLIDO');
       } else if (titulo && cep && endereco && numero && complemento) {
         const dados = {
           title: titulo,
-          cep: cep,
+          cep: cep.replace(/[^0-9]/g, ''),
           address: endereco,
           number: numero,
           complement: complemento,
@@ -196,13 +198,16 @@ if (userData) {
         const complemento = document.getElementById(
           'complemento_alterar',
         ).value;
+        const regexCep = /^[^0-9]*$/;
 
-        if (cep && cep.length !== 8) {
+        if (cep && cep.replace(/[^0-9]/g, '').length !== 8) {
           alert('preecha o CEP com 8 números');
+        } else if (regexCep.test(cep)) {
+          alert('CEP INVÁLIDO');
         } else if (titulo && cep && endereco && numero && complemento) {
           const dados = {
             title: titulo,
-            cep: cep,
+            cep: cep.replace(/[^0-9]/g, ''),
             address: endereco,
             number: numero,
             complement: complemento,

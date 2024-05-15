@@ -83,10 +83,14 @@ header {
   align-items: start;
 }
 
+.img {
+  height: 100%;
+}
+
 .content img {
   object-fit: cover;
   object-position: center;
-  height: 55rem;
+  height: 100%;
 }
 
 .form {
@@ -172,4 +176,26 @@ select {
 
 .error.active {
   display: block;
+}
+
+@media (max-width: 650px) {
+  .content img {
+    display: none;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: initial;
+  }
+
+  .form {
+    padding: 2rem;
+    position: initial;
+  }
+
+  .form div {
+    max-width: initial;
+  }
 }

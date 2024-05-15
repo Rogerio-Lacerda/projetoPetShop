@@ -210,3 +210,26 @@ header {
 .formAlterar.ativo {
   display: grid;
 }
+
+@media (max-width: 850px) {
+  .content {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 700px;
+  }
+  .formAlterar {
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 460px) {
+  .formCadastrar h2,
+  .formAlterar h2 {
+    font-size: 1.5rem;
+  }
+  .formCadastrar label,
+  .formAlterar label {
+    font-size: 1rem;
+  }
+}

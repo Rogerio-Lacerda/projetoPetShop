@@ -103,6 +103,7 @@ if (!userData) {
     var senha = document.getElementById('senha').value;
     var confSenha = document.getElementById('confSenha').value;
     var termo = document.getElementById('user_type').value;
+    var regexCpf = /^[^0-9]*$/;
 
     let idade = convertIdade(dataNasc);
     const errorSpan = document.querySelector('.error');
@@ -119,6 +120,9 @@ if (!userData) {
     } else if (termo != 1) {
       errorSpan.innerText = 'É necessário aceitar os termos!';
       errorSpan.classList.add('active');
+    } else if (regexCpf.test(cpfCnpj)) {
+      errorSpan.innerText = 'CPF/CNPJ inválido!';
+      errorSpan.classList.add('active');
     } else {
       errorSpan.innerText = '';
       errorSpan.classList.remove('active');
@@ -128,7 +132,7 @@ if (!userData) {
         email: email,
         user_type_id: 1,
         password: senha,
-        cpf_cnpj: cpfCnpj,
+        cpf_cnpj: cpfCnpj.replace(/[^0-9]/g, ''),
         terms: termo,
         birthday: dataNasc,
       };

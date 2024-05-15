@@ -1,6 +1,11 @@
 @import url('footer.css');
 * {
   font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
 }
 body {
   margin: 0;
@@ -70,24 +75,40 @@ body .fundo_principal {
 .conteudo {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
   position: absolute;
   top: 20rem;
+  max-width: 100%;
 }
 .conteudo .texto_inicial {
-  width: 50rem;
+  width: 60rem;
   padding-left: 50px;
-  padding-right: 20rem;
+  display: grid;
+  align-content: start;
+  gap: 1rem;
 }
+
 img {
   max-width: 100%;
   display: block;
 }
-.conteudo .imagem_inicial {
+.conteudo .imagem {
   width: 100%;
-  display: block;
+  display: grid;
+  justify-items: center;
+}
+.conteudo .imagem img {
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: center;
+  height: 20rem;
 }
 .conteudo p {
   color: #fff;
+  background: #913af3;
+  border-radius: 8px;
+  padding: 0.5rem;
 }
 
 .conteudo .btn_login {
@@ -146,4 +167,73 @@ img {
 }
 .categ_diversos {
   background-image: url('../assets/index/categ_products.webp');
+}
+
+@media (max-width: 750px) {
+  .conteudo {
+    flex-direction: column;
+    top: 10rem;
+  }
+  .conteudo .imagem {
+    padding-left: 50px;
+  }
+  .conteudo .imagem img {
+    width: 50%;
+  }
+  .conteudo .texto_inicial {
+    width: initial;
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    padding-left: 140px;
+    align-self: center;
+  }
+  .conteudo .texto_inicial p {
+    width: 80%;
+  }
+  .image {
+    width: 5rem;
+    height: 5rem;
+  }
+  .categorias p {
+    font-size: 0.8rem;
+  }
+  .categ_produtos {
+    max-width: 4rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .conteudo {
+    top: 8rem;
+    gap: 4rem;
+  }
+  .image {
+    width: 3rem;
+    height: 3rem;
+  }
+  .conteudo .imagem img {
+    height: 15rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .conteudo {
+    top: 12rem;
+  }
+
+  .conteudo .imagem img {
+    height: 10rem;
+  }
+
+  .conteudo p {
+    font-size: 0.8rem;
+  }
+
+  .conteudo .btn_login {
+    font-size: 1rem;
+  }
+  .conteudo .texto_inicial {
+    padding-left: 100px;
+  }
 }

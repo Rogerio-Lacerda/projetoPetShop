@@ -1,3 +1,4 @@
+@import url('footer.css');
 * {
   margin: 0;
   padding: 0;
@@ -270,32 +271,4 @@ main {
   height: 64px;
   width: 64px;
   border-radius: 16px;
-}
-
-footer {
-  background-color: #bbbbbb57;
-  font-size: 10px;
-  padding: 30px;
-  width: 100%;
-  align-self: end;
-}
-
-.redes {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-}
-
-.redes div {
-  display: flex;
-}
-
-.redes i {
-  font-size: 30px;
-  color: #913af3;
-}
-
-.redes p {
-  color: #000;
-  padding-left: 10px;
 }

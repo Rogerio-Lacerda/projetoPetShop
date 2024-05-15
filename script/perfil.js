@@ -3,8 +3,7 @@ const userData = localStorage.getItem('userData')
   : null;
 
 if (userData) {
-  const urlGetEndereco =
-    'https://go-wash-api.onrender.com/api/auth/address';
+  const urlGetEndereco = 'https://go-wash-api.onrender.com/api/auth/address';
   const urlDeleteEndereco =
     'https://go-wash-api.onrender.com/api/auth/address/';
 

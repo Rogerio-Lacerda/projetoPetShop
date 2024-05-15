@@ -197,45 +197,4 @@ header {
   .form div {
     max-width: initial;
   }
-
-  footer {
-    display: grid;
-    justify-content: center;
-    gap: 1rem;
-    justify-items: center;
-  }
-
-  .redes {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .facebook,
-  .faq {
-    justify-self: end;
-  }
-
-  .faq {
-    margin-right: 4rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .redes {
-    grid-template-columns: 1fr;
-    align-items: center;
-  }
-
-  .redes div {
-    display: flex;
-    align-items: center;
-  }
-
-  .facebook,
-  .faq {
-    justify-self: start;
-    margin-right: 0;
-  }
 }
