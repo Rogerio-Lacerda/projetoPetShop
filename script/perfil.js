@@ -86,7 +86,6 @@ if (userData) {
         } catch (e) {
           console.log(e);
         } finally {
-          //console.log(data);
           window.alert('Endereço deletado!');
           window.location.reload();
         }
