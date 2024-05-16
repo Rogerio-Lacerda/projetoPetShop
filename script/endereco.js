@@ -3,11 +3,16 @@ const userData = localStorage.getItem('userData')
   : null;
 
 if (userData) {
+  function sairUser() {
+    window.localStorage.removeItem('userData');
+  }
+  const btnSair = document.querySelector('.btnSair');
+  btnSair.addEventListener('click', sairUser);
+
   // Cadastrar Endereço
   function cadastrarEndereco() {
     const formCadastrar = document.querySelector('.formCadastrar');
     const url = 'https://go-wash-api.onrender.com/api/auth/address';
-
     const token = userData['access_token'];
 
     function manipularButton(ativo) {
@@ -22,21 +27,22 @@ if (userData) {
         buttonCadastrar.removeAttribute('disabled', '');
       }
     }
-    function mostrarEndereco(json, error, loading, response) {
+
+    function mostrarEndereco(json, error, loading) {
       const errorSpan = document.querySelector('.error');
       const enderecoCadastrado = document.querySelector('.cadastrado');
       if (loading) {
         manipularButton(true);
         errorSpan.classList.remove('ativo');
         enderecoCadastrado.classList.remove('ativo');
-      } else if (!response.ok) {
+      } else if (error) {
         manipularButton(false);
         errorSpan.classList.add('ativo');
         enderecoCadastrado.classList.remove('ativo');
         setTimeout(() => {
           errorSpan.classList.remove('ativo');
-        }, 3000);
-      } else if (json && response.ok) {
+        }, 5000);
+      } else if (json) {
         manipularButton(false);
         errorSpan.classList.remove('ativo');
         enderecoCadastrado.classList.add('ativo');
@@ -48,30 +54,28 @@ if (userData) {
     }
 
     async function fetchCadastrar(dados) {
-      let response;
+      let response = null;
       let json = null;
       let error = false;
-      let loading;
+      let loading = false;
       try {
         loading = true;
-        error = false;
-        mostrarEndereco(json, error, loading, response);
+        mostrarEndereco(json, error, loading);
         response = await fetch(url, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + token,
           },
-
           body: JSON.stringify(dados),
         });
         json = await response.json();
-        if (!response.ok) throw new Error(true);
+        if (!response.ok) throw new Error(`Error: ${response.status}`);
       } catch (e) {
-        error = e;
+        error = `Error: ${e.message}`;
       } finally {
         loading = false;
-        mostrarEndereco(json, error, loading, response);
+        mostrarEndereco(json, error, loading);
       }
     }
 
@@ -82,12 +86,9 @@ if (userData) {
       const endereco = document.getElementById('endereco').value;
       const numero = document.getElementById('numero').value;
       const complemento = document.getElementById('complemento').value;
-      const regexCep = /^[^0-9]*$/;
 
       if (cep && cep.replace(/[^0-9]/g, '').length !== 8) {
         alert('preecha o CEP com 8 números');
-      } else if (regexCep.test(cep)) {
-        alert('CEP INVÁLIDO');
       } else if (titulo && cep && endereco && numero && complemento) {
         const dados = {
           title: titulo,
@@ -139,17 +140,20 @@ if (userData) {
         }
       }
 
-      function mostrarInformacoes(response, json, error, loading) {
+      function mostrarInformacoes(json, error, loading) {
         const errorAlterar = document.querySelector('.errorAlterar');
         const cadastradoAlterar = document.querySelector('.cadastradoAlterar');
         if (loading) {
           manipularBotao(true);
           errorAlterar.classList.remove('ativo');
           cadastradoAlterar.classList.remove('ativo');
-        } else if (error || !response.ok) {
+        } else if (error) {
           manipularBotao(false);
           errorAlterar.classList.add('ativo');
           cadastradoAlterar.classList.remove('ativo');
+          setTimeout(() => {
+            errorAlterar.classList.remove('ativo');
+          }, 5000);
         } else if (json) {
           manipularBotao(false);
           errorAlterar.classList.remove('ativo');
@@ -163,14 +167,13 @@ if (userData) {
       }
 
       async function fetchAlterar(dados) {
-        let response;
+        let response = null;
         let json = null;
         let error = false;
         let loading = false;
         try {
           loading = true;
-          error = false;
-          mostrarInformacoes(response, json, error, loading);
+          mostrarInformacoes(json, error, loading);
           response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -180,12 +183,12 @@ if (userData) {
             body: JSON.stringify(dados),
           });
           json = await response.json();
-          if (!response.ok) throw new Error(true);
+          if (!response.ok) throw new Error(`Error: ${response.status}`);
         } catch (e) {
-          error = e;
+          error = `Error: ${e.message}`;
         } finally {
           loading = false;
-          mostrarInformacoes(response, json, error, loading);
+          mostrarInformacoes(json, error, loading);
         }
       }
 
@@ -198,12 +201,9 @@ if (userData) {
         const complemento = document.getElementById(
           'complemento_alterar',
         ).value;
-        const regexCep = /^[^0-9]*$/;
 
         if (cep && cep.replace(/[^0-9]/g, '').length !== 8) {
           alert('preecha o CEP com 8 números');
-        } else if (regexCep.test(cep)) {
-          alert('CEP INVÁLIDO');
         } else if (titulo && cep && endereco && numero && complemento) {
           const dados = {
             title: titulo,
