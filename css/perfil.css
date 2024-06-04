@@ -272,3 +272,21 @@ main {
   width: 64px;
   border-radius: 16px;
 }
+
+.temperatura{
+  border: #913af3 solid 2px;
+  padding: 5px;
+  justify-self: start;
+  max-width: 300px;
+}
+.temperatura h3{
+  max-width: 200px;
+}
+
+.temp{
+  font-size: 1.4rem !important;
+  background: #913af3 !important;
+  color: #fff !important;
+  padding: 2px;
+  max-width: 100px;
+}

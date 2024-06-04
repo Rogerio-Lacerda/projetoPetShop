@@ -93,9 +93,30 @@ if (userData) {
     });
   }
 
+  async function getTempo(cidade){
+    const urlTempo = `http://api.weatherapi.com/v1/current.json?key=978a0ec0e7c841d4a9a224430240406&q=${cidade}&aqi=no`;
+    let response;
+    let json;
+    try{
+      response = await fetch(urlTempo)
+      json = await response.json()
+    }catch(e){
+      json = false
+    }finally{
+      console.log(urlTempo)
+      console.log(json);
+      return json;
+    }
+  }
+
   function mostrarInfoEndereco(retorno, token) {
     const content = document.querySelector('.endereco');
-    retorno.map((item) => {
+    retorno.map(async (item) => {
+      const cidade = item.formatted_address.split(',')[2].split('-')[0].trim();
+      const res_tempo = await getTempo(cidade);
+      const temperatura = res_tempo.current.temp_c
+
+      
       const form = document.createElement('form');
       form.classList.add('form');
       form.innerHTML = `
@@ -106,6 +127,11 @@ if (userData) {
         <button value="${item.id}" id="deletaEndereco" class="idEndereco btn-deletar">
           <i class="bi bi-trash"></i>
         </button>
+      
+      <div class='temperatura'>
+       <h3>${cidade}</h3>
+       <input readonly value="${temperatura}°" class='temp'>
+      </div>
       
       <div >
           <h3> Titulo </h3>
